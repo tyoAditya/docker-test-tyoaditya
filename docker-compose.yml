@@ -12,31 +12,33 @@ php:
   working_dir: /var/www/html/app/public
   command: php-fpm
   links:
-    - db
+    - mysql
     - cache
   ports:
     - "9000:9000"
   environment:
-    APP_ENV: local
-    APP_DEBUG: 'true'
-    APP_KEY: SomeRandomKey!!!
+    APP_ENV: production
+    APP_DEBUG: 'false'
+    APP_KEY: 123456789ABCDE
     APP_LOCALE: en
     APP_FALLBACK_LOCALE: en
     DB_CONNECTION: mysql
     DB_HOST: db
-    DB_DATABASE: lumen
-    DB_USERNAME: lumen
-    DB_PASSWORD: secret
+    DB_DATABASE: appbilltax_DB789
+    DB_USERNAME: root
+    DB_PASSWORD: root
     MEMCACHED_HOST: cache
     CACHE_DRIVER: memcached
-db:
-  image: mysql
+mysql:
+  image: mysql:5.6.40
+  volumes:
+      - dbdata:/var/lib/mysql
   ports:
     - "3306:3306"
   environment:
-    MYSQL_ROOT_PASSWORD: secret
-    MYSQL_DATABASE: lumen
-    MYSQL_USER: lumen
-    MYSQL_PASSWORD: secret
+    MYSQL_ROOT_PASSWORD: root
+    MYSQL_DATABASE: appbilltax_DB789
+    MYSQL_USER: root
+    MYSQL_PASSWORD: root
 cache:
   image: memcached
