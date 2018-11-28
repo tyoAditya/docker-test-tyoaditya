@@ -56,7 +56,8 @@ docker-compose down
 
 * **Sample JSON Data Params:**
 
-  ```	{
+  ```	
+    {
 		  "name": "Music Cafe",
 		  "taxcode": 4,
 		  "amount": 490
